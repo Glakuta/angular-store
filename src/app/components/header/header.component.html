@@ -1,33 +1,33 @@
-<mat-toolbar class="max-w-full mx-auto border-x justify-between">
+<mat-toolbar class="flex justify-between max-w-full mx-auto border-x">
   <a routerLink="home">Angular Store</a>
   <button mat-icon-button [matMenuTriggerFor]="menu">
-    <mat-icon [matBadge]="1">shopping_cart</mat-icon>
+    <mat-icon [matBadge]="1" aria-hidden="false">shopping_cart</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
     <div class="p-3 divide-y divide-solid">
-      <div class="pb-3 flex justify-between">
+      <div class="flex justify-between pb-3">
         <span class="mr-16">1 items</span>
         <a routerLink="cart">View cart</a>
       </div>
       <div class="py-3">
-        <div class="flex justify-between font-light mb-2">
+        <div class="flex justify-between mb-2 font-light">
           Keybord x1
-          <span class="font-bold not-italic">{{ "150" | currency }}</span>
+          <span class="not-italic font-bold">{{ "150" | currency }}</span>
         </div>
       </div>
-      <div class="py-3 flex justify-between font-light">
+      <div class="flex justify-between py-3 font-light">
         Total:
         <span class="font-bold">{{ "150" | currency }}</span>
       </div>
-      <div class="pt-3 flex justify-between">
-        <button class="bg-rose-600 text-white rounded-full w-9 h-9">
-          <mat-icon>remove_shopping_cart</mat-icon>
+      <div class="flex justify-between pt-3">
+        <button class="text-white rounded-full bg-rose-600 w-9 h-9">
+          <mat-icon aria-hidden="false">remove_shopping_cart</mat-icon>
         </button>
         <button
           routerLink="cart"
-          class="bg-green-600 text-white rounded-full w-9 h-9"
+          class="text-white bg-green-600 rounded-full w-9 h-9"
         >
-          <mat-icon>remove_shopping_cart</mat-icon>
+          <mat-icon aria-hidden="false">remove_shopping_cart</mat-icon>
         </button>
       </div>
     </div>
