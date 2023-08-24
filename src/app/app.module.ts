@@ -26,6 +26,7 @@ import { FiltersComponent } from './pages/home/components/filters/filters.compon
 import { ProductBoxComponent } from './pages/home/components/product-box/product-box.component';
 import { CartComponent } from './pages/cart/cart.component';
 import {NgOptimizedImage} from "@angular/common";
+import {CartService} from "./services/cart.service";
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, HomeComponent, ProductsHeaderComponent, FiltersComponent, ProductBoxComponent, CartComponent],
@@ -49,7 +50,7 @@ import {NgOptimizedImage} from "@angular/common";
         HttpClientModule,
         NgOptimizedImage,
     ],
-  providers: [],
+  providers: [CartService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
