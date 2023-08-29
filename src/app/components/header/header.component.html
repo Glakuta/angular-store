@@ -1,26 +1,26 @@
 <mat-toolbar class="flex justify-between max-w-full mx-auto border-x">
   <a routerLink="home">Angular Store</a>
   <button mat-icon-button [matMenuTriggerFor]="menu">
-    <mat-icon [matBadge]="1" aria-hidden="false">shopping_cart</mat-icon>
+    <mat-icon [matBadge]= "itemsQuantity" aria-hidden="false">shopping_cart</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
     <div class="p-3 divide-y divide-solid">
       <div class="flex justify-between pb-3">
-        <span class="mr-16">1 items</span>
+        <span class="mr-16">{{itemsQuantity}} items</span>
         <a routerLink="cart">View cart</a>
       </div>
-      <div class="py-3">
-        <div class="flex justify-between mb-2 font-light">
-          Keybord x1
-          <span class="not-italic font-bold">{{ "150" | currency }}</span>
+      <div *ngIf="cart.items.length" class="py-3">
+        <div *ngFor="let item of cart.items" class="flex justify-between mb-2 font-light">
+          {{item.name}} x {{item.quantity}}
+          <span class="not-italic font-bold">{{ item.price | currency }}</span>
         </div>
       </div>
       <div class="flex justify-between py-3 font-light">
         Total:
-        <span class="font-bold">{{ "150" | currency }}</span>
+        <span class="font-bold">{{ getTotal(cart.items) | currency }}</span>
       </div>
       <div class="flex justify-between pt-3">
-        <button class="text-white rounded-full bg-rose-600 w-9 h-9">
+        <button (click)="onClearCart()"  class="text-white rounded-full bg-rose-600 w-9 h-9">
           <mat-icon aria-hidden="false">remove_shopping_cart</mat-icon>
         </button>
         <button
