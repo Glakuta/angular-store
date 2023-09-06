@@ -38,13 +38,40 @@ export class CartService {
 
   }
 
-  deleteItem(item: CartItem): void {
+  deleteItem(item: CartItem, updateCart = true): Array<CartItem> {
     const filteredItems = this.cart.value.items.filter(
         (_item) => _item.id !== item.id
     )
 
-    this.cart.next({items: filteredItems})
-    this._snackbar.open("1 item removed from the cart", "Ok", {duration: 3000})
+    if(updateCart){
 
+      this.cart.next({items: filteredItems})
+      this._snackbar.open("1 item removed from the cart", "Ok", {duration: 3000})
+
+    }
+
+    return filteredItems
+
+  }
+
+  removeQuantity(item: CartItem): void {
+    let itemForRemoval: CartItem | undefined
+    let filteredItems = this.cart.value.items.map((_item) => {
+      if(item.id === item.id){
+        item.quantity--
+      }
+
+      if(item.id === 0){
+        itemForRemoval = _item
+      }
+      return _item
+    })
+
+    if (itemForRemoval){
+      filteredItems = this.deleteItem(itemForRemoval, false)
+    }
+
+    this.cart.next({items: filteredItems});
+    this._snackbar.open("1 item removed from cart", "Ok", {duration: 3000})
   }
 }

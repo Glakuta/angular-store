@@ -7,15 +7,7 @@ import {Product} from "../../../../models/product.model";
 })
 export class ProductBoxComponent {
   @Input() fullWidthMode = false
-  product: Product | undefined = {
-    id: 1,
-    title: "Nike Air Jordan I",
-    price: 100,
-    category: "shoes",
-    description: "Dumb description dasdasdasdasda",
-    image: "https://placeholder/150"
-
-}
+  @Input() product: Product | undefined
 @Output() addToCart = new EventEmitter()
 
   onAddToCart(): void {
